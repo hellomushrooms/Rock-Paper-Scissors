@@ -29,6 +29,7 @@ struct ContentView: View {
             Button(action: {
                 playerMove = generateMove()
                 compMove = generateMove()
+                updateScore()
             }, label: {
                 Text("PLAY")
             })
@@ -69,6 +70,10 @@ struct ContentView: View {
             playerScore += 1
         } else if playerMove == "✊" && compMove == "✌️" {
             playerScore += 1
+        } else if playerMove == compMove {
+            
+        } else {
+            compScore += 1
         }
     }
 }
