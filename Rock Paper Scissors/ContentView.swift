@@ -18,43 +18,50 @@ struct ContentView: View {
     @State var result = "Press PLAY to Start"
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Rock Paper Scissors!")
-            Spacer()
-            HStack {
-                Text(playerMove)
-                Text(compMove)
-            }
-            .font(.largeTitle)
-            Spacer()
-            Button(action: {
-                playerMove = generateMove()
-                compMove = generateMove()
-                updateScore()
-            }, label: {
-                Text("PLAY")
-            })
-            Spacer()
-            Text(result)
-            Spacer()
-            HStack {
+        ZStack {
+            Image("pastel-blue-bg")
+                .resizable()
+                .ignoresSafeArea()
+            VStack {
                 Spacer()
-                VStack {
-                    Text("Player Score")
-                    Text(String(playerScore))
+                Text("Rock Paper Scissors!")
+                    .font(.system(size: 30, design: .monospaced))
+                Spacer()
+                HStack {
+                    Text(playerMove)
+                    Text(compMove)
+                }
+                .font(.largeTitle)
+                Spacer()
+                Button(action: {
+                    playerMove = generateMove()
+                    compMove = generateMove()
+                    updateScore()
+                }, label: {
+                    Text("PLAY")
+                })
+                Spacer()
+                Text(result)
+                Spacer()
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("Player Score")
+                        Text(String(playerScore))
+                    }
+                    Spacer()
+                    VStack {
+                        Text("Computer Score")
+                        Text(String(compScore))
+                    }
+                    Spacer()
                 }
                 Spacer()
-                VStack {
-                    Text("Computer Score")
-                    Text(String(compScore))
-                }
-                Spacer()
             }
-            Spacer()
+            .padding()
         }
-        .padding()
     }
+        
     
     func generateMove() -> String {
         let temp = Int.random(in: 1...3)
