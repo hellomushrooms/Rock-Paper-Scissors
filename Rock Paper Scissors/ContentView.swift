@@ -15,6 +15,8 @@ struct ContentView: View {
     @State var playerScore = 0
     @State var compScore = 0
     
+    @State var result = "Press PLAY to Start"
+    
     var body: some View {
         VStack {
             Spacer()
@@ -33,6 +35,8 @@ struct ContentView: View {
             }, label: {
                 Text("PLAY")
             })
+            Spacer()
+            Text(result)
             Spacer()
             HStack {
                 Spacer()
@@ -66,14 +70,18 @@ struct ContentView: View {
     func updateScore() {
         if playerMove == "✌️" && compMove == "✋" {
             playerScore += 1
+            result = "You win."
         } else if playerMove == "✋" && compMove == "✊" {
             playerScore += 1
+            result = "You win."
         } else if playerMove == "✊" && compMove == "✌️" {
             playerScore += 1
+            result = "You win."
         } else if playerMove == compMove {
-            
+            result = "Draw."
         } else {
             compScore += 1
+            result = "Computer wins."
         }
     }
 }
